@@ -1,14 +1,21 @@
 package com.tpspring.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.List;
 import java.util.UUID;
 
+@Entity
+@Table(name = "services")
 public class Service implements Serializable {
     @Id
-    @Column(name = "id")
+    @Column(name="id")
     private UUID id;
     @Column(name="nom")
+    @NotNull
     private String nom;
+    // Liste des utilisateurs dans le service
+    @OneToMany(mappedBy="service")
+    private List<Utilisateur> utilisateurs;
 }

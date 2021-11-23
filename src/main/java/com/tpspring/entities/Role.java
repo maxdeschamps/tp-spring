@@ -1,4 +1,6 @@
 package com.tpspring.entities;
 
-enum Role {
+public enum Role {
+    MEDECIN,
+    CHERCHEUR
 }

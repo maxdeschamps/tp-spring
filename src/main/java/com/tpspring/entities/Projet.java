@@ -1,38 +1,59 @@
 package com.tpspring.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
 @Entity
+@Table(name = "projets")
 public class Projet implements Serializable {
     @Id
     @Column(name="id")
     private UUID id;
     @Column(name="nom")
+    @NotNull
     private String nom;
-    @Column(name="auteur")
-    private Utilisateur auteur; // (créateur du projet)
     @Column(name="description")
     private String description; // (détaillée)
     @Column(name="date_creation")
+    @NotNull
     private Date dateCreation; // de création
+    @Column(name="date_modification")
+    @NotNull
+    private Date dateModification; // de modification
     @Column(name="date_cloture")
     private Date dateCloture; // de clôture
     @Column(name="nombre_patients_souhaites")
     private Integer nombrePatientsSouhaites; // de patients souhaités sur le projet
     @Column(name="nombre_patients_identifies")
     private Integer nombrePatientsIdentifies; // total de patients identifiés, calculé grâce aux patients identifiés par chaque participant
-// TODO: Relations à créer, les columns ne sont pas corrects
-    private List<Message> forum; // (liste de messages)
-    private List<MotCle> motsCles; // -clés
-    private List<Requete> listeRequetes; // de requêtes, qui doivent être validées par l’auteur
-    private List<Patient> listeParticpants; //de participants, qui doivent être validés par l’auteur
-    private List<Patient> listeAbonnes; //d’abonnés, qui sont notifiés quand il se passe quelque chose de nouveau
+    // Liste des messages du projet
+    @OneToMany(mappedBy = "projet")
+    private List<Message> forum;
+    // Auteur du projet
+    @ManyToOne
+    @JoinColumn(name="utilisateur_id", nullable=false)
+    private Utilisateur auteur;
+    // Liste des mots clés reliés au projet
+    @ManyToMany(mappedBy = "motscles")
+    @JsonIgnore
+    private List<MotCle> motsCles;
+    // Liste des requêtes, qui doivent être validées par l’auteur
+    @OneToMany(mappedBy="projet")
+    private List<Requete> requetes;
+    // Liste des participants au projet
+    @ManyToMany(mappedBy = "projetsParticipant")
+    @JsonIgnore
+    private List<Patient> participants; //de participants, qui doivent être validés par l’auteur
+    // Liste des utilisateurs abonnés au projet
+    @ManyToMany(mappedBy = "projetsAbonne")
+    @JsonIgnore
+    private List<Utilisateur> abonnes; //d’abonnés, qui sont notifiés quand il se passe quelque chose de nouveau
 
     public String getNom() {
         return nom;
@@ -74,22 +95,6 @@ public class Projet implements Serializable {
         this.dateCloture = dateCloture;
     }
 
-    public List<Patient> getNombrePatientsSouhaites() {
-        return nombrePatientsSouhaites;
-    }
-
-    public void setNombrePatientsSouhaites(List<Patient> nombrePatientsSouhaites) {
-        this.nombrePatientsSouhaites = nombrePatientsSouhaites;
-    }
-
-    public List<Patient> getNombrePatientsIdentifies() {
-        return nombrePatientsIdentifies;
-    }
-
-    public void setNombrePatientsIdentifies(List<Patient> nombrePatientsIdentifies) {
-        this.nombrePatientsIdentifies = nombrePatientsIdentifies;
-    }
-
     public List<Message> getForum() {
         return forum;
     }
@@ -106,27 +111,51 @@ public class Projet implements Serializable {
         this.motsCles = motsCles;
     }
 
-    public List<Requete> getListeRequetes() {
-        return listeRequetes;
+    public Date getDateModification() {
+        return dateModification;
     }
 
-    public void setListeRequetes(List<Requete> listeRequetes) {
-        this.listeRequetes = listeRequetes;
+    public void setDateModification(Date dateModification) {
+        this.dateModification = dateModification;
     }
 
-    public List<Patient> getListeParticpants() {
-        return listeParticpants;
+    public Integer getNombrePatientsSouhaites() {
+        return nombrePatientsSouhaites;
     }
 
-    public void setListeParticpants(List<Patient> listeParticpants) {
-        this.listeParticpants = listeParticpants;
+    public void setNombrePatientsSouhaites(Integer nombrePatientsSouhaites) {
+        this.nombrePatientsSouhaites = nombrePatientsSouhaites;
     }
 
-    public List<Patient> getListeAbonnes() {
-        return listeAbonnes;
+    public Integer getNombrePatientsIdentifies() {
+        return nombrePatientsIdentifies;
     }
 
-    public void setListeAbonnes(List<Patient> listeAbonnes) {
-        this.listeAbonnes = listeAbonnes;
+    public void setNombrePatientsIdentifies(Integer nombrePatientsIdentifies) {
+        this.nombrePatientsIdentifies = nombrePatientsIdentifies;
+    }
+
+    public List<Requete> getRequetes() {
+        return requetes;
+    }
+
+    public void setRequetes(List<Requete> requetes) {
+        this.requetes = requetes;
+    }
+
+    public List<Patient> getParticipants() {
+        return participants;
+    }
+
+    public void setParticipants(List<Patient> participants) {
+        this.participants = participants;
+    }
+
+    public List<Utilisateur> getAbonnes() {
+        return abonnes;
+    }
+
+    public void setAbonnes(List<Utilisateur> abonnes) {
+        this.abonnes = abonnes;
     }
 }
