@@ -6,7 +6,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.List;
-import java.util.UUID;
 
 @Entity
 @Table(name = "utilisateurs")
@@ -27,9 +26,9 @@ public class Utilisateur implements Serializable {
     @Column(name="prenom")
     @NotNull
     private String prenom;
-    @Column(name="role")
+    @Column(name="poste")
     @NotNull
-    private Role role;
+    private Poste poste;
     // Service dans lequel est l'utilisateur
     @ManyToOne
     @JoinColumn(name="service_id", nullable=false)
@@ -80,12 +79,12 @@ public class Utilisateur implements Serializable {
         this.prenom = prenom;
     }
 
-    public Role getRole() {
-        return role;
+    public Poste getPoste() {
+        return poste;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setPoste(Poste poste) {
+        this.poste = poste;
     }
 
     public Service getService() {
