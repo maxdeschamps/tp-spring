@@ -14,9 +14,6 @@ public class ProjetService {
     private ProjetRepository projetRepository;
 
     public Projet createOrUpdate(Projet projet) {
-//        if (StringUtils.isNotEmpty(projet.getPassword())) {
-//            projet.setPassword(passwordEncoder.encode(projet.getPassword()));
-//        }
         return projetRepository.save(projet);
     }
 
