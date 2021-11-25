@@ -12,7 +12,7 @@ import java.util.UUID;
 public class Patient implements Serializable {
     @Id
     @Column(name="id")
-    private UUID id;
+    private Integer id;
     // Liste des projets dans lesquels le patient participe
     @ManyToMany(mappedBy = "participants")
     @JsonIgnore

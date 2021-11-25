@@ -11,7 +11,7 @@ import java.util.UUID;
 public class Service implements Serializable {
     @Id
     @Column(name="id")
-    private UUID id;
+    private Integer id;
     @Column(name="nom")
     @NotNull
     private String nom;

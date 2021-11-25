@@ -10,7 +10,7 @@ import java.util.UUID;
 public class Message implements Serializable {
     @Id
     @Column(name="id")
-    private UUID id;
+    private Integer id;
     @Column(name="likes")
     private Integer likes;
     @Column(name="message")

@@ -13,7 +13,7 @@ import java.util.UUID;
 public class Utilisateur implements Serializable {
     @Id
     @Column(name="id")
-    private UUID id;
+    private Integer id;
     @Column(name="pseudo")
     @NotNull
     private String pseudo;
