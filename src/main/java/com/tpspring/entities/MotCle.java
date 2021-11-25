@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Table(name = "motcles")
+@Table(name = "mot_cles")
 public class MotCle implements Serializable {
     @Id
     @Column(name="id")
@@ -21,4 +21,20 @@ public class MotCle implements Serializable {
     @ManyToMany(mappedBy = "motsCles")
     @JsonIgnore
     private List<Projet> projets;
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public List<Projet> getProjets() {
+        return projets;
+    }
+
+    public void setProjets(List<Projet> projets) {
+        this.projets = projets;
+    }
 }

@@ -17,4 +17,12 @@ public class Patient implements Serializable {
     @ManyToMany(mappedBy = "participants")
     @JsonIgnore
     private List<Projet> projetsParticipant;
+
+    public List<Projet> getProjetsParticipant() {
+        return projetsParticipant;
+    }
+
+    public void setProjetsParticipant(List<Projet> projetsParticipant) {
+        this.projetsParticipant = projetsParticipant;
+    }
 }

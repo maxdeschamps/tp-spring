@@ -18,4 +18,20 @@ public class Service implements Serializable {
     // Liste des utilisateurs dans le service
     @OneToMany(mappedBy="service")
     private List<Utilisateur> utilisateurs;
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public List<Utilisateur> getUtilisateurs() {
+        return utilisateurs;
+    }
+
+    public void setUtilisateurs(List<Utilisateur> utilisateurs) {
+        this.utilisateurs = utilisateurs;
+    }
 }

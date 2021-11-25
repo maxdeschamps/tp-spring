@@ -27,5 +27,45 @@ public class Requete implements Serializable {
     // L'auteur de la requête
     @ManyToOne
     @JoinColumn(name="utilisateur_id", nullable=false)
-    private Utilisateur auteurRequete;
+    private Utilisateur auteur;
+
+    public Boolean getValide() {
+        return valide;
+    }
+
+    public void setValide(Boolean valide) {
+        this.valide = valide;
+    }
+
+    public String getRequete() {
+        return requete;
+    }
+
+    public void setRequete(String requete) {
+        this.requete = requete;
+    }
+
+    public Date getDateCreation() {
+        return dateCreation;
+    }
+
+    public void setDateCreation(Date dateCreation) {
+        this.dateCreation = dateCreation;
+    }
+
+    public Projet getProjet() {
+        return projet;
+    }
+
+    public void setProjet(Projet projet) {
+        this.projet = projet;
+    }
+
+    public Utilisateur getAuteur() {
+        return auteur;
+    }
+
+    public void setAuteur(Utilisateur auteur) {
+        this.auteur = auteur;
+    }
 }

@@ -40,18 +40,30 @@ public class Projet implements Serializable {
     @JoinColumn(name="utilisateur_id", nullable=false)
     private Utilisateur auteur;
     // Liste des mots clés reliés au projet
-    @ManyToMany(mappedBy = "motscles")
+    @ManyToMany
+    @JoinTable(name = "projets_mots_cles",
+            joinColumns = @JoinColumn(name = "projet_id"),
+            inverseJoinColumns = @JoinColumn(name = "mot_cle_id")
+    )
     @JsonIgnore
     private List<MotCle> motsCles;
     // Liste des requêtes, qui doivent être validées par l’auteur
     @OneToMany(mappedBy="projet")
     private List<Requete> requetes;
     // Liste des participants au projet
-    @ManyToMany(mappedBy = "projetsParticipant")
+    @ManyToMany
+    @JoinTable(name = "projets_participants",
+            joinColumns = @JoinColumn(name = "projet_id"),
+            inverseJoinColumns = @JoinColumn(name = "patient_id")
+    )
     @JsonIgnore
     private List<Patient> participants; //de participants, qui doivent être validés par l’auteur
     // Liste des utilisateurs abonnés au projet
-    @ManyToMany(mappedBy = "projetsAbonne")
+    @ManyToMany
+    @JoinTable(name = "projets_abonnes",
+            joinColumns = @JoinColumn(name = "projet_id"),
+            inverseJoinColumns = @JoinColumn(name = "utilisateur_id")
+    )
     @JsonIgnore
     private List<Utilisateur> abonnes; //d’abonnés, qui sont notifiés quand il se passe quelque chose de nouveau
 
