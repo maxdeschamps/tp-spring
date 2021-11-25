@@ -1,11 +1,11 @@
 package com.tpspring.services;
 
-import com.tpspring.repositories.UtilisateurRepository;
+import com.tpspring.repositories.NotificationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UtilisateurService {
+public class NotificationService {
     @Autowired
-    private UtilisateurRepository utilisateurRepository;
+    private NotificationRepository notificationRepository;
 }
