@@ -7,7 +7,6 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 @Entity
 @Table(name = "projets")
@@ -50,19 +49,11 @@ public class Projet implements Serializable {
     // Liste des requêtes, qui doivent être validées par l’auteur
     @OneToMany(mappedBy="projet")
     private List<Requete> requetes;
-    // Liste des participants au projet
-    @ManyToMany
-    @JoinTable(name = "projets_participants",
-            joinColumns = @JoinColumn(name = "projet_id"),
-            inverseJoinColumns = @JoinColumn(name = "patient_id")
-    )
-    @JsonIgnore
-    private List<Patient> participants; //de participants, qui doivent être validés par l’auteur
     // Liste des utilisateurs abonnés au projet
     @ManyToMany
     @JoinTable(name = "projets_abonnes",
-            joinColumns = @JoinColumn(name = "projet_id"),
-            inverseJoinColumns = @JoinColumn(name = "utilisateur_id")
+        joinColumns = @JoinColumn(name = "projet_id"),
+        inverseJoinColumns = @JoinColumn(name = "utilisateur_id")
     )
     @JsonIgnore
     private List<Utilisateur> abonnes; //d’abonnés, qui sont notifiés quand il se passe quelque chose de nouveau
@@ -153,14 +144,6 @@ public class Projet implements Serializable {
 
     public void setRequetes(List<Requete> requetes) {
         this.requetes = requetes;
-    }
-
-    public List<Patient> getParticipants() {
-        return participants;
-    }
-
-    public void setParticipants(List<Patient> participants) {
-        this.participants = participants;
     }
 
     public List<Utilisateur> getAbonnes() {
