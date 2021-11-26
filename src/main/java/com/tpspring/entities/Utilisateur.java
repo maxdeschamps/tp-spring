@@ -39,12 +39,15 @@ public class Utilisateur implements Serializable {
     private List<ProjetUtilisateur> projetUtilisateurs;
     // Liste des messages de l'utilisateur
     @OneToMany(mappedBy = "utilisateur")
+    @JsonIgnore
     private List<Message> messages;
     // Liste des projets dans lesquels l'utilisateur en est l'auteur
     @OneToMany(mappedBy = "auteur")
+    @JsonIgnore
     private List<Projet> projets;
     // Liste des requêtes dont l'utilisateur en est l'auteur
     @OneToMany(mappedBy = "auteur")
+    @JsonIgnore
     private List<Requete> requetes;
     // Liste des projets dans lesquels l'utilisateur est abonné
     @ManyToMany(mappedBy = "abonnes")

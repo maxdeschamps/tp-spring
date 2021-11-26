@@ -1,5 +1,7 @@
 package com.tpspring.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -19,10 +21,12 @@ public class Message implements Serializable {
     private String message;
     // Le projet relié au message
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name="projet_id", nullable=false)
     private Projet projet;
     // L'auteur du message
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name="utilisateur_id", nullable=false)
     private Utilisateur utilisateur;
 

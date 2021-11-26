@@ -1,7 +1,5 @@
 package com.tpspring.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -45,7 +43,6 @@ public class Projet implements Serializable {
             joinColumns = @JoinColumn(name = "projet_id"),
             inverseJoinColumns = @JoinColumn(name = "mot_cle_id")
     )
-    @JsonIgnore
     private List<MotCle> motsCles;
     // Liste des utilisateurs participants au projet
     @OneToMany(mappedBy = "projet")
@@ -59,7 +56,6 @@ public class Projet implements Serializable {
         joinColumns = @JoinColumn(name = "projet_id"),
         inverseJoinColumns = @JoinColumn(name = "utilisateur_id")
     )
-    @JsonIgnore
     private List<Utilisateur> abonnes; //d’abonnés, qui sont notifiés quand il se passe quelque chose de nouveau
 
     public String getNom() {

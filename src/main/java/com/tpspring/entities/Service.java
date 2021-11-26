@@ -1,5 +1,7 @@
 package com.tpspring.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -18,6 +20,7 @@ public class Service implements Serializable {
     private String nom;
     // Liste des utilisateurs dans le service
     @OneToMany(mappedBy="service")
+    @JsonIgnore
     private List<Utilisateur> utilisateurs;
 
     public String getNom() {

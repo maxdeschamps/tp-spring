@@ -17,4 +17,19 @@ public class Notification implements Serializable {
     @Column(name="notification")
     private String notification;
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getNotification() {
+        return notification;
+    }
+
+    public void setNotification(String notification) {
+        this.notification = notification;
+    }
 }
