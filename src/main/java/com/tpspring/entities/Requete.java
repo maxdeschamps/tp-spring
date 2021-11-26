@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.UUID;
 
 @Entity
-@Table(name = "patients")
+@Table(name = "requetes")
 public class Requete implements Serializable {
     @Id
     @Column(name="id")
