@@ -10,6 +10,7 @@ import java.util.UUID;
 @Table(name = "services")
 public class Service implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private Integer id;
     @Column(name="nom")

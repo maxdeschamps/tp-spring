@@ -10,6 +10,7 @@ import java.util.UUID;
 @Table(name = "requetes")
 public class Requete implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private Integer id;
     @Column(name="valide")

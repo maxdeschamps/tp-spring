@@ -11,6 +11,7 @@ import java.util.List;
 @Table(name = "utilisateurs")
 public class Utilisateur implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private Integer id;
     @Column(name="pseudo")

@@ -9,6 +9,7 @@ import java.util.UUID;
 @Table(name = "messages")
 public class Message implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private Integer id;
     @Column(name="likes")

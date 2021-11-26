@@ -12,6 +12,7 @@ import java.util.List;
 @Table(name = "projets")
 public class Projet implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private Integer id;
     @Column(name="nom")

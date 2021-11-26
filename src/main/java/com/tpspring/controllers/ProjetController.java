@@ -14,6 +14,7 @@ public class ProjetController {
     @Autowired
     private ProjetService projetService;
 
+    @Operation(summary = "Récupération d'un utilisateur à partir de son identifiant")
     @RequestMapping(path = "/projet", method = RequestMethod.GET)
     public Projet getProjet(@RequestParam(value = "id") Integer id) {
         return projetService.getProjetById(id);
