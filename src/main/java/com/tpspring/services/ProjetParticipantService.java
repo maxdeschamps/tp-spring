@@ -17,4 +17,9 @@ public class ProjetParticipantService {
     public ProjetParticipant getProjetParticipantByProjetAndUtilisateur(Integer projetId, Integer utilisateurId) {
         return projetParticipantRepository.findParticipationByProjetAndUtilisateur(projetId, utilisateurId);
     }
+
+    public void deleteParticipant(Integer projetId, Integer utilisateurId) {
+        ProjetParticipant participation = getProjetParticipantByProjetAndUtilisateur(projetId, utilisateurId);
+        projetParticipantRepository.delete(participation);
+    }
 }

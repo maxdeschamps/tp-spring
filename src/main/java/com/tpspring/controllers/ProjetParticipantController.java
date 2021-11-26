@@ -25,4 +25,10 @@ public class ProjetParticipantController {
             projetParticipantService.createOrUpdate(projetParticipant);
         }
     }
+
+    @Operation(summary = "Suppression d'un participant d'un projet à partir de son identifiant")
+    @RequestMapping(path = "/projet/delete-participant", method = RequestMethod.DELETE)
+    public void deleteProjet(@RequestParam(value = "projet") Integer projet, @RequestParam(value = "utilisateur") Integer utilisateur) {
+        projetParticipantService.deleteParticipant(projet, utilisateur);
+    }
 }

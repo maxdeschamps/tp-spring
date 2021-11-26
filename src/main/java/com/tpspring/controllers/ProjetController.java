@@ -14,25 +14,25 @@ public class ProjetController {
     @Autowired
     private ProjetService projetService;
 
-    @Operation(summary = "Récupération d'un utilisateur à partir de son identifiant")
+    @Operation(summary = "Récupération d'un projet à partir de son identifiant")
     @RequestMapping(path = "/projet", method = RequestMethod.GET)
     public Projet getProjet(@RequestParam(value = "id") Integer id) {
         return projetService.getProjetById(id);
     }
 
-    @Operation(summary = "Création ou mise à jour d'un utilisateur")
+    @Operation(summary = "Création ou mise à jour d'un projet")
     @RequestMapping(path = "/projet", method = RequestMethod.PUT)
     public Projet addOrUpdateProjet(@Valid @RequestBody Projet projet) {
         return projetService.createOrUpdate(projet);
     }
 
-    @Operation(summary = "Récupération de tous les utilisateurs")
+    @Operation(summary = "Récupération de tous les projets")
     @RequestMapping(path = "/projets/all", method = RequestMethod.GET)
     public List<Projet> getProjets() {
         return projetService.getAllProjets();
     }
 
-    @Operation(summary = "Suppression d'un utilisateur à partir de son identifiant")
+    @Operation(summary = "Suppression d'un projet à partir de son identifiant")
     @RequestMapping(path = "/projet", method = RequestMethod.DELETE)
     public void deleteProjet(@RequestParam(value = "id") Integer id) {
         projetService.deleteProjet(projetService.getProjetById(id));
