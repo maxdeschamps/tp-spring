@@ -47,6 +47,9 @@ public class Projet implements Serializable {
     )
     @JsonIgnore
     private List<MotCle> motsCles;
+    // Liste des utilisateurs participants au projet
+    @OneToMany(mappedBy = "projet")
+    private List<ProjetUtilisateur> projetUtilisateurs;
     // Liste des requêtes, qui doivent être validées par l’auteur
     @OneToMany(mappedBy="projet")
     private List<Requete> requetes;

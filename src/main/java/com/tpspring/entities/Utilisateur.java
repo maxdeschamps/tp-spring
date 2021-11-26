@@ -34,6 +34,9 @@ public class Utilisateur implements Serializable {
     @ManyToOne
     @JoinColumn(name="service_id", nullable=false)
     private Service service;
+    // Liste des projets dont l'utilisateur participe
+    @OneToMany(mappedBy = "utilisateur")
+    private List<ProjetUtilisateur> projetUtilisateurs;
     // Liste des messages de l'utilisateur
     @OneToMany(mappedBy = "utilisateur")
     private List<Message> messages;
