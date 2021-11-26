@@ -18,4 +18,8 @@ public class ProjetUtilisateurService {
     public ProjetUtilisateur createOrUpdate(ProjetUtilisateur projetUtilisateur) {
         return projetUtilisateurRepository.save(projetUtilisateur);
     }
+
+    public ProjetUtilisateur getProjetUtilisateurByProjetAndUtilisateur(Integer projetId, Integer utilisateurId) {
+        return projetUtilisateurRepository.findParticipationByProjetAndUtilisateur(projetId, utilisateurId);
+    }
 }
