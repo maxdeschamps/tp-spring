@@ -6,15 +6,15 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "projet_utilisateur")
-public class ProjetUtilisateur implements Serializable {
+@Table(name = "projet_participant")
+public class ProjetParticipant implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
     @ManyToOne
-    @JoinColumn(name="utilisateur_id", nullable=false)
-    private Utilisateur utilisateur;
+    @JoinColumn(name="participant_id", nullable=false)
+    private Utilisateur participant;
     @ManyToOne
     @JoinColumn(name="projet_id", nullable=false)
     private Projet projet;
@@ -23,12 +23,12 @@ public class ProjetUtilisateur implements Serializable {
     @Column(name = "valide")
     private Boolean valide;
 
-    public Utilisateur getUtilisateur() {
-        return utilisateur;
+    public Utilisateur getParticipant() {
+        return participant;
     }
 
-    public void setUtilisateur(Utilisateur utilisateur) {
-        this.utilisateur = utilisateur;
+    public void setParticipant(Utilisateur participant) {
+        this.participant = participant;
     }
 
     public Projet getProjet() {

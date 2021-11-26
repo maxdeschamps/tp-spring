@@ -46,7 +46,7 @@ public class Projet implements Serializable {
     private List<MotCle> motsCles;
     // Liste des utilisateurs participants au projet
     @OneToMany(mappedBy = "projet")
-    private List<ProjetUtilisateur> projetUtilisateurs;
+    private List<ProjetParticipant> projetParticipants;
     // Liste des requêtes, qui doivent être validées par l’auteur
     @OneToMany(mappedBy="projet")
     private List<Requete> requetes;
@@ -152,5 +152,13 @@ public class Projet implements Serializable {
 
     public void setAbonnes(List<Utilisateur> abonnes) {
         this.abonnes = abonnes;
+    }
+
+    public List<ProjetParticipant> getProjetParticipants() {
+        return projetParticipants;
+    }
+
+    public void setProjetParticipants(List<ProjetParticipant> projetParticipants) {
+        this.projetParticipants = projetParticipants;
     }
 }

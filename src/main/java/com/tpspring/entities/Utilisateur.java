@@ -35,8 +35,8 @@ public class Utilisateur implements Serializable {
     @JoinColumn(name="service_id", nullable=false)
     private Service service;
     // Liste des projets dont l'utilisateur participe
-    @OneToMany(mappedBy = "utilisateur")
-    private List<ProjetUtilisateur> projetUtilisateurs;
+    @OneToMany(mappedBy = "participant")
+    private List<ProjetParticipant> projetParticipants;
     // Liste des messages de l'utilisateur
     @OneToMany(mappedBy = "utilisateur")
     @JsonIgnore
@@ -132,5 +132,13 @@ public class Utilisateur implements Serializable {
 
     public void setProjetsAbonne(List<Projet> projetsAbonne) {
         this.projetsAbonne = projetsAbonne;
+    }
+
+    public List<ProjetParticipant> getProjetParticipants() {
+        return projetParticipants;
+    }
+
+    public void setProjetParticipants(List<ProjetParticipant> projetParticipants) {
+        this.projetParticipants = projetParticipants;
     }
 }
