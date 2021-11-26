@@ -2,6 +2,7 @@ package com.tpspring.services;
 
 import com.tpspring.entities.Projet;
 import com.tpspring.repositories.ProjetRepository;
+import com.tpspring.repositories.UtilisateurRepository;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,8 +13,13 @@ import java.util.List;
 public class ProjetService {
     @Autowired
     private ProjetRepository projetRepository;
+    @Autowired
+    private UtilisateurService utilisateurService;
 
     public Projet createOrUpdate(Projet projet) {
+        if (projet.getAuteur() == null) {
+            projet.setAuteur(utilisateurService.createDefaultUtilisateur());
+        }
         return projetRepository.save(projet);
     }
 

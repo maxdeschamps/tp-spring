@@ -1,5 +1,6 @@
 package com.tpspring.services;
 
+import com.tpspring.entities.Poste;
 import com.tpspring.entities.Utilisateur;
 import com.tpspring.repositories.UtilisateurRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,26 @@ import java.util.List;
 public class UtilisateurService {
     @Autowired
     private UtilisateurRepository utilisateurRepository;
+    @Autowired
+    private ServiceService serviceService;
+
+    public Utilisateur createDefaultUtilisateur() {
+        Utilisateur utilisateur = (utilisateurRepository.getByPseudo("dede") == null)
+                ? new Utilisateur()
+                : utilisateurRepository.getByPseudo("dede");
+
+        if (utilisateur.getNom() == null) {
+            utilisateur.setPrenom("Default");
+            utilisateur.setNom("User");
+            utilisateur.setPoste(Poste.CHERCHEUR);
+            utilisateur.setPseudo("dede");
+            utilisateur.setMotDePasse("123");
+
+            utilisateur.setService(serviceService.createDefaultService());
+            utilisateurRepository.save(utilisateur);
+        }
+        return utilisateur;
+    }
 
     public Utilisateur createOrUpdate(Utilisateur utilisateur) {
 //        if (StringUtils.isNotEmpty(utilisateur.getPassword())) {
