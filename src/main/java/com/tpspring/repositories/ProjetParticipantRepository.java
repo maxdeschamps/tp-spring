@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProjetParticipantRepository extends JpaRepository<ProjetParticipant, Integer> {
-    @Query("select pu from ProjetParticipant pu where pu.projet = ?1 and pu.participant = ?2")
+    @Query("select pp from ProjetParticipant pp where pp.projet.id = ?1 and pp.participant.id = ?2")
     ProjetParticipant findParticipationByProjetAndUtilisateur(Integer projetId, Integer utilisateurId);
 }
