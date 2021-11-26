@@ -1,6 +1,7 @@
 package com.tpspring.services;
 
 import com.tpspring.entities.Poste;
+import com.tpspring.entities.Projet;
 import com.tpspring.entities.Utilisateur;
 import com.tpspring.repositories.UtilisateurRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,4 +53,9 @@ public class UtilisateurService {
         utilisateurRepository.delete(utilisateur);
     }
 
+    public void addProjetToUtilisateur(Utilisateur utilisateur, Projet projet) {
+        List<Projet> projets = utilisateur.getProjets();
+        projets.add(projet);
+        utilisateur.setProjets(projets);
+    }
 }
