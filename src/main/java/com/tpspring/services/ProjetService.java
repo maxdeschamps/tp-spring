@@ -2,6 +2,7 @@ package com.tpspring.services;
 
 import com.tpspring.dto.ProjetDTO;
 import com.tpspring.entities.Projet;
+import com.tpspring.entities.Utilisateur;
 import com.tpspring.repositories.ProjetRepository;
 import com.tpspring.repositories.UtilisateurRepository;
 import org.apache.commons.lang3.StringUtils;
@@ -19,9 +20,10 @@ public class ProjetService {
     @Autowired
     private UtilisateurService utilisateurService;
 
-    public ProjetDTO createOrUpdate(Projet projet) {
-        if (projet.getAuteur() == null) {
-            projet.setAuteur(utilisateurService.createDefaultUtilisateur());
+    public ProjetDTO createOrUpdate(Projet projet, Utilisateur utilisateur) {
+        if (projet.getAuteur() != null) {
+            projet.setAuteur(utilisateur);
+            utilisateurService.addProjetToUtilisateur(utilisateur, projet);
         }
         if (projet.getDateCreation() == null) {
             projet.setDateCreation(new Date());
