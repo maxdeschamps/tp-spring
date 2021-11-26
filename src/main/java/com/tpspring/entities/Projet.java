@@ -28,7 +28,6 @@ public class Projet implements Serializable {
     private Date dateCloture; // de clôture
     @Column(name="nombre_patients_souhaites")
     private Integer nombrePatientsSouhaites; // de patients souhaités sur le projet
-    @Column(name="nombre_patients_identifies")
     private Integer nombrePatientsIdentifies; // total de patients identifiés, calculé grâce aux patients identifiés par chaque participant
     // Liste des messages du projet
     @OneToMany(mappedBy = "projet")
@@ -131,11 +130,15 @@ public class Projet implements Serializable {
     }
 
     public Integer getNombrePatientsIdentifies() {
-        return nombrePatientsIdentifies;
-    }
+        Integer nombrePatientsIdentifies = 0;
 
-    public void setNombrePatientsIdentifies(Integer nombrePatientsIdentifies) {
-        this.nombrePatientsIdentifies = nombrePatientsIdentifies;
+        for (ProjetParticipant projetParticipant: projetParticipants) {
+            if (projetParticipant.getValide()) {
+                nombrePatientsIdentifies += projetParticipant.getNombrePatientsIdentifies();
+            }
+        }
+
+        return nombrePatientsIdentifies;
     }
 
     public List<Requete> getRequetes() {
