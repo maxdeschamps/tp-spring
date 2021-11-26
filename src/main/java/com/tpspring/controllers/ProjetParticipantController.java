@@ -20,7 +20,7 @@ public class ProjetParticipantController {
     ) {
         ProjetParticipant projetParticipant = projetParticipantService.getProjetParticipantByProjetAndUtilisateur(projetId, participantId);
 
-        if (projetParticipant.getClass().isInstance(ProjetParticipant.class)) {
+        if (projetParticipant != null) {
             projetParticipant.setValide(approbation);
             projetParticipantService.createOrUpdate(projetParticipant);
         }
