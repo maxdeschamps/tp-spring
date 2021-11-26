@@ -12,5 +12,5 @@ import org.springframework.stereotype.Repository;
 public interface ProjetUtilisateurRepository extends JpaRepository<ProjetUtilisateur, Integer> {
 
     @Query("select pu from ProjetUtilisateur pu where pu.projet = ?1 and pu.utilisateur = ?2")
-    Requete findParticipationByProjetAndUtilisateur(Integer projetId, Integer utilisateurId);
+    ProjetUtilisateur findParticipationByProjetAndUtilisateur(Integer projetId, Integer utilisateurId);
 }
