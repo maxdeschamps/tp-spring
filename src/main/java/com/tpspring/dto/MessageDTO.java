@@ -14,8 +14,6 @@ public class MessageDTO extends Message {
     private Integer id;
     private Integer likes;
     private String message;
-//    private ProjetDTO projetDTO;
-//    private UtilisateurDTO auteurDTO;
 
     public MessageDTO(Message m) {
         this.setId(m.getId());

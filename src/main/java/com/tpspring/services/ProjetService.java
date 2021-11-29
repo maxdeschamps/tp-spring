@@ -8,6 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,6 +22,12 @@ public class ProjetService {
     public ProjetDTO createOrUpdate(Projet projet) {
         if (projet.getAuteur() == null) {
             projet.setAuteur(utilisateurService.createDefaultUtilisateur());
+        }
+        if (projet.getDateCreation() == null) {
+            projet.setDateCreation(new Date());
+        }
+        if (projet.getDateModification() == null) {
+            projet.setDateModification(new Date());
         }
         projetRepository.save(projet);
         return new ProjetDTO(projet);
