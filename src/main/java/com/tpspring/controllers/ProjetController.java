@@ -1,5 +1,6 @@
 package com.tpspring.controllers;
 
+import com.tpspring.dto.ProjetDTO;
 import com.tpspring.entities.Projet;
 import com.tpspring.services.*;
 import io.swagger.v3.oas.annotations.Operation;
@@ -16,7 +17,7 @@ public class ProjetController {
 
     @Operation(summary = "Récupération d'un projet à partir de son identifiant")
     @RequestMapping(path = "/projet", method = RequestMethod.GET)
-    public Projet getProjet(@RequestParam(value = "id") Integer id) {
+    public ProjetDTO getProjet(@RequestParam(value = "id") Integer id) {
         return projetService.getProjetById(id);
     }
 

@@ -57,6 +57,14 @@ public class Projet implements Serializable {
     )
     private List<Utilisateur> abonnes; //d’abonnés, qui sont notifiés quand il se passe quelque chose de nouveau
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public String getNom() {
         return nom;
     }

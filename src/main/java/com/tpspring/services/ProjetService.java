@@ -1,5 +1,6 @@
 package com.tpspring.services;
 
+import com.tpspring.dto.ProjetDTO;
 import com.tpspring.entities.Projet;
 import com.tpspring.repositories.ProjetRepository;
 import com.tpspring.repositories.UtilisateurRepository;
@@ -23,8 +24,9 @@ public class ProjetService {
         return projetRepository.save(projet);
     }
 
-    public Projet getProjetById(Integer id) {
-        return projetRepository.findById(id).orElse(null);
+    public ProjetDTO getProjetById(Integer id) {
+        Projet projet = projetRepository.findById(id).orElse(null);
+        return new ProjetDTO(projet);
     }
 
     public List<Projet> getAllProjets() {
