@@ -1,5 +1,7 @@
 package com.tpspring.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -31,10 +33,12 @@ public class Projet implements Serializable {
     private Integer nombrePatientsIdentifies; // total de patients identifiés, calculé grâce aux patients identifiés par chaque participant
     // Liste des messages du projet
     @OneToMany(mappedBy = "projet")
+    @JsonIgnore
     private List<Message> forum;
     // Auteur du projet
     @ManyToOne
     @JoinColumn(name="utilisateur_id", nullable=false)
+    @JsonIgnore
     private Utilisateur auteur;
     // Liste des mots clés reliés au projet
     @ManyToMany
@@ -42,12 +46,15 @@ public class Projet implements Serializable {
             joinColumns = @JoinColumn(name = "projet_id"),
             inverseJoinColumns = @JoinColumn(name = "mot_cle_id")
     )
+    @JsonIgnore
     private List<MotCle> motsCles;
     // Liste des utilisateurs participants au projet
     @OneToMany(mappedBy = "projet")
+    @JsonIgnore
     private List<ProjetParticipant> projetParticipants;
     // Liste des requêtes, qui doivent être validées par l’auteur
     @OneToMany(mappedBy="projet")
+    @JsonIgnore
     private List<Requete> requetes;
     // Liste des utilisateurs abonnés au projet
     @ManyToMany
@@ -55,6 +62,7 @@ public class Projet implements Serializable {
         joinColumns = @JoinColumn(name = "projet_id"),
         inverseJoinColumns = @JoinColumn(name = "utilisateur_id")
     )
+    @JsonIgnore
     private List<Utilisateur> abonnes; //d’abonnés, qui sont notifiés quand il se passe quelque chose de nouveau
 
     public Integer getId() {
