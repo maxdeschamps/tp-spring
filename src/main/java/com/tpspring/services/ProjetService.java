@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ProjetService {
@@ -17,11 +18,12 @@ public class ProjetService {
     @Autowired
     private UtilisateurService utilisateurService;
 
-    public Projet createOrUpdate(Projet projet) {
+    public ProjetDTO createOrUpdate(Projet projet) {
         if (projet.getAuteur() == null) {
             projet.setAuteur(utilisateurService.createDefaultUtilisateur());
         }
-        return projetRepository.save(projet);
+        projetRepository.save(projet);
+        return new ProjetDTO(projet);
     }
 
     public ProjetDTO getProjetById(Integer id) {
@@ -29,8 +31,8 @@ public class ProjetService {
         return new ProjetDTO(projet);
     }
 
-    public List<Projet> getAllProjets() {
-        return projetRepository.findAll();
+    public List<ProjetDTO> getAllProjets() {
+        return projetRepository.findAll().stream().map(ProjetDTO::new).collect(Collectors.toList());
     }
 
     public void deleteProjet(Projet projet) {

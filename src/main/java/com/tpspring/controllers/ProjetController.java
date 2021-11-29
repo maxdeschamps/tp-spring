@@ -23,13 +23,13 @@ public class ProjetController {
 
     @Operation(summary = "Création ou mise à jour d'un projet")
     @RequestMapping(path = "/projet", method = RequestMethod.PUT)
-    public Projet addOrUpdateProjet(@Valid @RequestBody Projet projet) {
+    public ProjetDTO addOrUpdateProjet(@Valid @RequestBody Projet projet) {
         return projetService.createOrUpdate(projet);
     }
 
     @Operation(summary = "Récupération de tous les projets")
     @RequestMapping(path = "/projets/all", method = RequestMethod.GET)
-    public List<Projet> getProjets() {
+    public List<ProjetDTO> getProjets() {
         return projetService.getAllProjets();
     }
 
