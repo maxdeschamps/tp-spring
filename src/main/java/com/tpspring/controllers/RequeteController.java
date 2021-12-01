@@ -22,7 +22,7 @@ public class RequeteController {
 
     @Operation(summary = "Création ou mise à jour d'une requête")
     @RequestMapping(path = "/requete", method = RequestMethod.PUT)
-    public Requete addOrUpdateProjet(@Valid @RequestBody Requete requete) {
+    public Requete addOrUpdateRequete(@Valid @RequestBody Requete requete) {
         return requeteService.createOrUpdate(requete);
     }
 }

@@ -17,6 +17,11 @@ public class Notification implements Serializable {
     @Column(name="notification")
     private String notification;
 
+    // La cible de la notification
+    @ManyToOne
+    @JoinColumn(name="utilisateur_id", nullable=false)
+    private Utilisateur cible;
+
     public String getType() {
         return type;
     }
@@ -31,5 +36,21 @@ public class Notification implements Serializable {
 
     public void setNotification(String notification) {
         this.notification = notification;
+    }
+
+    public Utilisateur getCible() {
+        return cible;
+    }
+
+    public void setCible(Utilisateur cible) {
+        this.cible = cible;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

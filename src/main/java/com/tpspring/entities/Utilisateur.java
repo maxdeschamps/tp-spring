@@ -49,6 +49,10 @@ public class Utilisateur implements Serializable {
     @OneToMany(mappedBy = "auteur")
     @JsonIgnore
     private List<Requete> requetes;
+    // Liste des notifications dont l'utilisateur en est la cible
+    @OneToMany(mappedBy = "cible")
+    @JsonIgnore
+    private List<Notification> notifications;
     // Liste des projets dans lesquels l'utilisateur est abonné
     @ManyToMany(mappedBy = "abonnes")
     @JsonIgnore
@@ -140,5 +144,13 @@ public class Utilisateur implements Serializable {
 
     public void setProjetParticipants(List<ProjetParticipant> projetParticipants) {
         this.projetParticipants = projetParticipants;
+    }
+
+    public List<Notification> getNotifications() {
+        return notifications;
+    }
+
+    public void setNotifications(List<Notification> notifications) {
+        this.notifications = notifications;
     }
 }
