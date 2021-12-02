@@ -14,6 +14,8 @@ import java.util.List;
 public class ProjetController {
     @Autowired
     private ProjetService projetService;
+    @Autowired
+    private NotificationService notificationService;
 
     @Operation(summary = "Récupération d'un projet à partir de son identifiant")
     @RequestMapping(path = "/projet", method = RequestMethod.GET)
@@ -24,7 +26,9 @@ public class ProjetController {
     @Operation(summary = "Création ou mise à jour d'un projet")
     @RequestMapping(path = "/projet", method = RequestMethod.PUT)
     public ProjetDTO addOrUpdateProjet(@Valid @RequestBody Projet projet) {
-        return projetService.createOrUpdate(projet);
+        ProjetDTO projetFinal = projetService.createOrUpdate(projet);
+        notificationService.notificationNouveauProjet(projetFinal);
+        return projetFinal;
     }
 
     @Operation(summary = "Récupération de tous les projets")

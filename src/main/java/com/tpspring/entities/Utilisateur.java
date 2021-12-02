@@ -30,6 +30,8 @@ public class Utilisateur implements Serializable {
     @Column(name="poste")
     @NotNull
     private Poste poste;
+    @Column(name="notification_projet")
+    private Boolean notification_projet;
     // Service dans lequel est l'utilisateur
     @ManyToOne
     @JoinColumn(name="service_id", nullable=false)
@@ -152,5 +154,21 @@ public class Utilisateur implements Serializable {
 
     public void setNotifications(List<Notification> notifications) {
         this.notifications = notifications;
+    }
+
+    public Boolean getNotification_projet() {
+        return notification_projet;
+    }
+
+    public void setNotification_projet(Boolean notification_projet) {
+        this.notification_projet = notification_projet;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

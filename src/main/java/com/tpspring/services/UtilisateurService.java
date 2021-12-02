@@ -26,6 +26,7 @@ public class UtilisateurService {
             utilisateur.setPoste(Poste.CHERCHEUR);
             utilisateur.setPseudo("dede");
             utilisateur.setMotDePasse("123");
+            utilisateur.setNotification_projet(true);
 
             utilisateur.setService(serviceService.createDefaultService());
             utilisateurRepository.save(utilisateur);

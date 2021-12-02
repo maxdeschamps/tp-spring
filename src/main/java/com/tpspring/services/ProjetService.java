@@ -3,8 +3,6 @@ package com.tpspring.services;
 import com.tpspring.dto.ProjetDTO;
 import com.tpspring.entities.Projet;
 import com.tpspring.repositories.ProjetRepository;
-import com.tpspring.repositories.UtilisateurRepository;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,9 +24,9 @@ public class ProjetService {
         if (projet.getDateCreation() == null) {
             projet.setDateCreation(new Date());
         }
-        if (projet.getDateModification() == null) {
-            projet.setDateModification(new Date());
-        }
+
+        projet.setDateModification(new Date());
+
         projetRepository.save(projet);
         return new ProjetDTO(projet);
     }
