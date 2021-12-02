@@ -69,4 +69,12 @@ public class Requete implements Serializable {
     public void setAuteur(Utilisateur auteur) {
         this.auteur = auteur;
     }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 }
