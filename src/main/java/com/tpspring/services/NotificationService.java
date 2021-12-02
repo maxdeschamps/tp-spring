@@ -47,4 +47,16 @@ public class NotificationService {
             this.createOrUpdate(notification);
         }
     }
+
+    public void notificationApprobationProjet(Projet projet, Utilisateur participant, Boolean approbation) {
+        Notification notification = new Notification();
+        if (approbation == true) {
+            notification.setNotification("Vous avez été accepté dans le projet "+projet.getNom());
+        } else {
+            notification.setNotification("Vous avez été refusé dans le projet "+projet.getNom());
+        }
+        notification.setType("Projet");
+        notification.setCible(participant);
+        this.createOrUpdate(notification);
+    }
 }
