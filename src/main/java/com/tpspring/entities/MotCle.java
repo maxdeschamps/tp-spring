@@ -38,4 +38,12 @@ public class MotCle implements Serializable {
     public void setProjets(List<Projet> projets) {
         this.projets = projets;
     }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 }
