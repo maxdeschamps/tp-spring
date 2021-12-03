@@ -30,7 +30,6 @@ public class ProjetParticipantController {
                                   @RequestParam(value = "approbation") boolean approbation
     ) {
         ProjetParticipant projetParticipant = projetParticipantService.getProjetParticipantByProjetAndUtilisateur(projetId, participantId);
-
         if (projetParticipant != null) {
             projetParticipant.setValide(approbation);
             projetParticipantService.createOrUpdate(projetParticipant);

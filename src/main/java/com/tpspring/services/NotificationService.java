@@ -3,9 +3,11 @@ package com.tpspring.services;
 import com.tpspring.dto.NotificationDTO;
 import com.tpspring.entities.Notification;
 import com.tpspring.entities.Projet;
+import com.tpspring.entities.Requete;
 import com.tpspring.entities.Utilisateur;
 import com.tpspring.repositories.NotificationRepository;
 import com.tpspring.repositories.UtilisateurRepository;
+import com.tpspring.repositories.ProjetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,8 @@ public class NotificationService {
     private NotificationRepository notificationRepository;
     @Autowired
     private UtilisateurRepository utilisateurRepository;
+    @Autowired
+    private ProjetRepository projetRepository;
 
     public NotificationDTO createOrUpdate(Notification notification) {
         notificationRepository.save(notification);
@@ -58,5 +62,16 @@ public class NotificationService {
         notification.setType("Projet");
         notification.setCible(participant);
         this.createOrUpdate(notification);
+    }
+
+    public void notificationNouvelleRequete(Requete requete, Projet projet) {
+        List<Utilisateur> utilisateurs = projetRepository.findAllAbonneInProjet(projet.getId());
+        for (Utilisateur utilisateur : utilisateurs) {
+            Notification notification = new Notification();
+            notification.setNotification("Une nouvelle requête à été faite pour le projet "+projet.getNom());
+            notification.setType("Requete");
+            notification.setCible(utilisateur);
+            this.createOrUpdate(notification);
+        }
     }
 }

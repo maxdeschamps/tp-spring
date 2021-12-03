@@ -16,6 +16,7 @@ public class RequeteDTO extends Requete {
     private Boolean valide;
     private String requete;
     private Date dateCreation;
+    private ProjetDTO projetDTO;
     private UtilisateurDTO auteurDTO;
 
     public RequeteDTO(Requete r) {
@@ -24,6 +25,7 @@ public class RequeteDTO extends Requete {
         this.setRequete(r.getRequete());
         this.setDateCreation(r.getDateCreation());
         this.setAuteurDTO(r.getAuteur());
+        this.setProjetDTO(r.getProjet());
     }
 
     public UtilisateurDTO getAuteurDTO() {
@@ -32,5 +34,13 @@ public class RequeteDTO extends Requete {
 
     public void setAuteurDTO(Utilisateur auteur) {
         this.auteurDTO = new UtilisateurDTO(auteur);
+    }
+
+    public ProjetDTO getProjetDTO() {
+        return projetDTO;
+    }
+
+    public void setProjetDTO(Projet projet) {
+        this.projetDTO = new ProjetDTO(projet);
     }
 }
