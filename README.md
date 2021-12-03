@@ -2,3 +2,4 @@
 
 - Jean-Philippe Bourdais
 - Maxence Deschamps
+- Antoine Bonin
