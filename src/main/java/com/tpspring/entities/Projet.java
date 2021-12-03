@@ -177,7 +177,11 @@ public class Projet implements Serializable {
 
         for (ProjetParticipant projetParticipant: projetParticipants) {
             if (projetParticipant.getValide()) {
-                nombrePatientsIdentifies += projetParticipant.getNombrePatientsIdentifies();
+                Integer participants = 0;
+                if (projetParticipant.getNombrePatientsIdentifies() != null) {
+                    participants = projetParticipant.getNombrePatientsIdentifies();
+                }
+                nombrePatientsIdentifies += participants;
             }
         }
 

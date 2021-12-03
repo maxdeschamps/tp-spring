@@ -25,7 +25,6 @@ public class RequeteDTO extends Requete {
         this.setRequete(r.getRequete());
         this.setDateCreation(r.getDateCreation());
         this.setAuteurDTO(r.getAuteur());
-        this.setProjetDTO(r.getProjet());
     }
 
     public UtilisateurDTO getAuteurDTO() {
@@ -42,5 +41,45 @@ public class RequeteDTO extends Requete {
 
     public void setProjetDTO(Projet projet) {
         this.projetDTO = new ProjetDTO(projet);
+    }
+
+    @Override
+    public Integer getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    @Override
+    public Boolean getValide() {
+        return valide;
+    }
+
+    @Override
+    public void setValide(Boolean valide) {
+        this.valide = valide;
+    }
+
+    @Override
+    public String getRequete() {
+        return requete;
+    }
+
+    @Override
+    public void setRequete(String requete) {
+        this.requete = requete;
+    }
+
+    @Override
+    public Date getDateCreation() {
+        return dateCreation;
+    }
+
+    @Override
+    public void setDateCreation(Date dateCreation) {
+        this.dateCreation = dateCreation;
     }
 }
