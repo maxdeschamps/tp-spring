@@ -2,6 +2,7 @@ package com.tpspring.dto;
 
 import com.tpspring.entities.*;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -41,17 +42,16 @@ public class ProjetDTO extends Projet {
         this.nombrePatientsIdentifies = nombrePatientsIdentifies;
     }
 
-    @Override
-    public Integer getNombrePatientsIdentifies() {
-        return nombrePatientsIdentifies;
-    }
-
     public List<MessageDTO> getForumDTO() {
         return forumDTO;
     }
 
     public void setForumDTO(List<Message> forum) {
-        this.forumDTO = forum.stream().map(MessageDTO::new).collect(Collectors.toList());
+        if (forum == null) {
+            this.forumDTO = new ArrayList<>();
+        } else {
+            this.forumDTO = forum.stream().map(MessageDTO::new).collect(Collectors.toList());
+        }
     }
 
     public UtilisateurDTO getAuteurDTO() {
@@ -67,7 +67,11 @@ public class ProjetDTO extends Projet {
     }
 
     public void setMotsClesDTO(List<MotCle> motsCles) {
-        this.motsClesDTO = motsCles.stream().map(MotCleDTO::new).collect(Collectors.toList());
+        if (motsCles == null) {
+            this.motsClesDTO = new ArrayList<>();
+        } else {
+            this.motsClesDTO = motsCles.stream().map(MotCleDTO::new).collect(Collectors.toList());
+        }
     }
 
     public List<RequeteDTO> getRequetesDTO() {
@@ -75,7 +79,11 @@ public class ProjetDTO extends Projet {
     }
 
     public void setRequetesDTO(List<Requete> requetes) {
-        this.requetesDTO = requetes.stream().map(RequeteDTO::new).collect(Collectors.toList());
+        if (requetes == null) {
+            this.requetesDTO = new ArrayList<>();
+        } else {
+            this.requetesDTO = requetes.stream().map(RequeteDTO::new).collect(Collectors.toList());
+        }
     }
 
     public List<UtilisateurDTO> getAbonnesDTO() {
@@ -83,6 +91,10 @@ public class ProjetDTO extends Projet {
     }
 
     public void setAbonnesDTO(List<Utilisateur> abonnes) {
-        this.abonnesDTO = abonnes.stream().map(UtilisateurDTO::new).collect(Collectors.toList());
+        if (abonnes == null) {
+            this.abonnesDTO = new ArrayList<>();
+        } else {
+            this.abonnesDTO = abonnes.stream().map(UtilisateurDTO::new).collect(Collectors.toList());
+        }
     }
 }
